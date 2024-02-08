@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
-        {
+        { 
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -21,7 +21,6 @@
         }
 
         #region Windows Form Designer generated code
-
         /// <summary>
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
@@ -39,7 +38,7 @@
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(393, 26);
+            dataGridView1.Location = new Point(211, 12);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 50;
             dataGridView1.RowTemplate.Height = 29;
@@ -51,7 +50,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1166, 626);
+            ClientSize = new Size(766, 478);
             Controls.Add(dataGridView1);
             Name = "Form1";
             Text = "Form1";
@@ -62,8 +61,9 @@
             ResumeLayout(false);
         }
 
-        #endregion
 
+
+        #endregion
         private DataGridView dataGridView1;
     }
 }

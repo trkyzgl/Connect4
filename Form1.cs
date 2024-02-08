@@ -25,17 +25,17 @@ namespace Connect4
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-          // g = e.Graphics;
-          //
-          // Pen kalem = new Pen(Color.Red, 2);//bir kalem oluşturduk kırmızı renkte ve 10 genişliğinde
-          //
-          // for (int i = 0; i < 8 * br; i += br)
-          // {
-          //     for (int j = 0; j < 8 * br; j += br)
-          //     {
-          //         g.DrawRectangle(kalem, new Rectangle(i, j, br, br));
-          //     }
-          // }
+            // g = e.Graphics;
+            //
+            // Pen kalem = new Pen(Color.Red, 2);//bir kalem oluşturduk kırmızı renkte ve 10 genişliğinde
+            //
+            // for (int i = 0; i < 8 * br; i += br)
+            // {
+            //     for (int j = 0; j < 8 * br; j += br)
+            //     {
+            //         g.DrawRectangle(kalem, new Rectangle(i, j, br, br));
+            //     }
+            // }
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
@@ -148,9 +148,7 @@ namespace Connect4
                 goto ETİKET;
             }
 
-            //dataGridView1 = sender as DataGridView;
             matris[e.RowIndex, e.ColumnIndex] = true;
-            //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
             dataGridView1.Rows[e.RowIndex + (7 - e.RowIndex) - a].Cells[e.ColumnIndex].Style.BackColor = renk;
 
             win_kontrol(e.RowIndex + (7 - e.RowIndex) - a, e.ColumnIndex);
@@ -166,55 +164,15 @@ namespace Connect4
                 )
             {
                 MessageBox.Show(dor.ToString() + " kazandı");
-                this.Refresh();
-                //for (int i = 0; i < dataGridView1.RowCount; i++)
-                //{
-                //    for (int j = 0; i < dataGridView1.ColumnCount;i++)
-                //    {
-                //        dataGridView1[i, j].Style.BackColor = Color.White;
-                //    }
-                //}
+                this.Refresh();               
                 return;
-            }
-            /*
-                    if (b + 3 <= 7 &&
-                        dataGridView1[a, b].Style.BackColor == dataGridView1[a, b+1].Style.BackColor &&
-                        dataGridView1[a, b].Style.BackColor == dataGridView1[a, b+2].Style.BackColor &&
-                        dataGridView1[a, b].Style.BackColor == dataGridView1[a, b+3].Style.BackColor)
-                    {
-                        MessageBox.Show(dor.ToString() + " kazandı");
-                        return;
-                    }
-                            */
-
-            /*
-            if (a + 3 < 7 && b + 3 > 7 &&
-                dataGridView1[a, b].Style.BackColor == dataGridView1[a + 1, b + 1].Style.BackColor &&
-                dataGridView1[a, b].Style.BackColor == dataGridView1[a + 2, b + 2].Style.BackColor &&
-                dataGridView1[a, b].Style.BackColor == dataGridView1[a + 3, b + 3].Style.BackColor
-                )
-            {
-                MessageBox.Show(dor.ToString() + " kazandı");
-                return;
-            }
-
-            if (a - 3 > 0 && b - 3 > 0 &&
-                dataGridView1[a, b].Style.BackColor == dataGridView1[a - 1, b - 1].Style.BackColor &&
-                dataGridView1[a, b].Style.BackColor == dataGridView1[a - 2, b - 2].Style.BackColor &&
-                dataGridView1[a, b].Style.BackColor == dataGridView1[a - 3, b - 3].Style.BackColor)
-            {
-                MessageBox.Show(dor.ToString() + " kazandı");
-                return;
-            }
-            */
+            }        
             if (dor == sira.yesil)
             {
-                //renk = Color.Green;
                 dor = sira.kirmizi;
             }
             else
             {
-                //renk = Color.Red;
                 dor = sira.yesil;
             }
         }
