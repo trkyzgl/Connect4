@@ -17,11 +17,15 @@ namespace Connect4
             yesil, kirmizi
         }
         Graphics g;
+        Color color = Color.Green;
 
         //bool[,] matris = new bool[8, 8];
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            //dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = dataGridView1.DefaultCellStyle.BackColor;
 
             dor = sira.yesil;
 
@@ -50,9 +54,6 @@ namespace Connect4
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
-
-
-
         }
 
 
@@ -76,21 +77,87 @@ namespace Connect4
 
         }
 
-        public void win_kontrol(int a, int b)
+
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            // Tıklanan hücrenin koordinatlarını al
+            if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor == Color.Green ||
+                dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor == Color.Red)
+            {
+                MessageBox.Show("Daha önce seçilmiş bir kutuyu seçemezsiniz");
+
+            }
+            else
+            {
+
+
+
+                int rowIndex = e.RowIndex;
+                int columnIndex = e.ColumnIndex;
+                //rowIndex++;
+                //columnIndex++;
+                // Koordinatları kullanarak istediğiniz işlemi yapabilirsiniz
+                Console.WriteLine($"Tıklanan hücre: [{rowIndex}, {columnIndex}]");
+                //MessageBox.Show("tıklanan satır "+ rowIndex.ToString());
+                //dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = color;
+
+                // Tıklanan hücrenin arka plan rengini değiştirelim
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Sadece hücreleri kontrol edelim
+                {
+                    DataGridViewCell cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.Style.BackColor = color; // Değiştirmek istediğiniz rengi burada ayarlayabilirsiniz
+                }
+
+                if (color == Color.Green) color = Color.Red;
+                else color = Color.Green;
+                kontrol(rowIndex, columnIndex);
+
+            }
+
+        }
+
+        public void kontrol(int x, int y)
+        {
+            //MessageBox.Show("");
+
+            /*
+             Aşağıdaki if şartları ile aynı renklerin yanyana gelip gelmediğini kontrol edeceğiz.
+             Bunun için biraz fazla if şartı yazmamız gerekecek çünkğ bütün durumları kontrol etmemiz gerekiyor.
+            */
+
+            if (x + 3 <= dataGridView1.RowCount &&
+                dataGridView1.Rows[x].Cells[y].Style.BackColor == dataGridView1.Rows[x + 1].Cells[y].Style.BackColor &&
+                dataGridView1.Rows[x].Cells[y].Style.BackColor == dataGridView1.Rows[x + 2].Cells[y].Style.BackColor &&
+                dataGridView1.Rows[x].Cells[y].Style.BackColor == dataGridView1.Rows[x + 3].Cells[y].Style.BackColor &&
+                dataGridView1.Rows[x].Cells[y].Style.BackColor == color)
+            {
+                win();
+            }
+
 
 
 
         }
 
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        public void win()
         {
-            // Tıklanan hücrenin koordinatlarını al
-            int rowIndex = e.RowIndex;
-            int columnIndex = e.ColumnIndex;
+            if (color == Color.Green)
+            {
+                MessageBox.Show("Yeşil renk kazandı");
+            }
+            else
+            {
+                MessageBox.Show("Kırmızı Renk Kazandı");
+            }
 
-            // Koordinatları kullanarak istediğiniz işlemi yapabilirsiniz
-            Console.WriteLine($"Tıklanan hücre: [{rowIndex}, {columnIndex}]");
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                {
+                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                }
+            }
         }
     }
 }
