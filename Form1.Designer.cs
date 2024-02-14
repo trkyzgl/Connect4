@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
-        { 
+        {
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -37,14 +37,19 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(211, 12);
+            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 50;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(400, 400);
+            dataGridView1.Size = new Size(764, 475);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellMouseClick += dataGridView1_CellMouseClick;
             // 
             // Form1
             // 
@@ -55,7 +60,6 @@
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            Paint += Form1_Paint;
             MouseClick += Form1_MouseClick;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
